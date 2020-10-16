@@ -1,0 +1,8 @@
+# FOLDERS
+node_modules/
+.idea/
+.vscode/
+dist/
+
+# FILES
+.env
