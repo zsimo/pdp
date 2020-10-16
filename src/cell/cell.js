@@ -9,12 +9,15 @@ module.exports = function () {
 
     var connections = [];
 
+    // la forza del segnale (weight) è dato dall'attivazione
+    // la funzione di output mappa l'attivazione attuale con un segnale di output
+    // può essere a soglia o casuale
     function output () {
         return activation * 2;
     }
 
     var rules = {
-        propagation: function {
+        propagation: function () {
     
         },
         activation: function (input) {
