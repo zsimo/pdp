@@ -26,7 +26,9 @@ class Cell extends HTMLElement {
   connectedCallback() {
     console.log("connected");
     this.addEventListener('mousedown', function (event) {
-      console.log(event.target);
+      // see https://stackoverflow.com/questions/51493918/vanilla-javascript-event-delegation-when-dealing-with-web-components
+      var target = event.path[0];
+      console.log(target);
     });
   }
 
