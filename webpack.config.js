@@ -9,6 +9,20 @@ module.exports = {
         compress: true,
         port: 9000
     },
+
+    module: {
+        rules: [
+            {
+                test: /\.html$/i,
+                use: 'raw-loader',
+            },
+        ],
+    },
+
+
+    resolve: {
+        modules: ['node_modules', __dirname]
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin()
