@@ -9,6 +9,7 @@ class Cell extends HTMLElement {
 
     const templateContent = template.content;
 
+    this.type = "input"; // "output", "hidden"
   
     this.innerHTML = templateContent  
     this.attachShadow({mode: 'open'}).appendChild(
