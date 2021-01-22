@@ -1,1 +1,0 @@
-(()=>{"use strict";var e,n;e=document.querySelector("main"),n=document.createElement("ul"),["cell","analaogic"].forEach((function(e){var a=document.createElement("li"),t=document.createElement("a");t.href=window.location.href+e,t.innerText="page #"+e,a.appendChild(t),n.appendChild(a)})),e.appendChild(n)})();

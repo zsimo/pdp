@@ -1,2 +1,17 @@
 @import "reset";
 @import "colors";
+@import "font";
+
+
+body {
+    background: $bg-color;
+    height: 100vh;
+    color: $font-color;
+}
+
+
+header {
+    background: $primary;
+    color: $bg-color;
+    padding: 20px 5px;
+}
