@@ -3,7 +3,7 @@
 var events = require("src/pages/analogic/events");
 var neuron = require("src/pages/analogic/neuron");
 
-var COUNT = 100;
+var COUNT = 300;
 
 function getInput (name) {
     return document.querySelector('input[name="'+ name +'"]');
