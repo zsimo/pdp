@@ -1,0 +1,16 @@
+@import "src/style/index";
+
+.neuron {
+    width: 40px;
+    height: 31px;
+    background: $secondary;
+    margin: 10px;
+    color: $bg-color;
+    float: left;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 9px;
+}
+.neuron.activated {
+    background: $third;
+}
