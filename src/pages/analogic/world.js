@@ -8,7 +8,6 @@ var neurons = [];
 for (var i = 0; i < COUNT; i += 1) {
     neurons.push(i);
 }
-randomize();
 
 function getInput (name) {
     return document.querySelector('input[name="'+ name +'"]');
