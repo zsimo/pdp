@@ -52,15 +52,18 @@ module.exports = function (index) {
         var factor = getInput("factor").value;
         var activation = calculateActivation(number, index, factor);
 
+        me.style.borderRadius = "0";
         if (activation > 0) {
             me.classList.add("activated")
             // me.style.height = (DEFAULT_HEIGHT * activation) + "px";        
             //me.style.borderRadius = (activation * 10 )+ "%";
             me.style.background = colorGradient(DEFAULT_BACKGROUND, ACTIVE_BACKGROUND, activation);
+            if (index === number) {
+                me.style.borderRadius = "50%";
+            }
         } else {
             me.classList.remove("activated");
             // me.style.height = DEFAULT_HEIGHT + "px";
-            // me.style.borderRadius = "0";
             me.style.background = "rgb(58, 72, 96)";
         }
 
@@ -70,6 +73,6 @@ module.exports = function (index) {
     me.className = "neuron";
     me.innerText = index;
     me.setAttribute("data-index", index);
-    document.body.appendChild(me);
+    document.querySelector("main").appendChild(me);
 
 };
