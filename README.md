@@ -7,5 +7,6 @@ https://cpb-eu-w2.wpmucdn.com/blogs.bristol.ac.uk/dist/b/403/files/2017/11/bower
 https://plato.stanford.edu/entries/connectionism/
 
 
+[style inspiration](https://lawsofux.com/)
 
 [demo](https://zsimo.github.io/pdp/public)
