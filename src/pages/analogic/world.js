@@ -3,9 +3,9 @@
 var events = require("src/pages/analogic/events");
 var neuron = require("src/pages/analogic/neuron");
 
-var COUNT = 250;
+var count = getInput("cell-counter").value;
 var neurons = [];
-for (var i = 0; i < COUNT; i += 1) {
+for (var i = 0; i < count; i += 1) {
     neurons.push(i);
 }
 
@@ -13,23 +13,27 @@ function getInput (name) {
     return document.querySelector('input[name="'+ name +'"]');
 }
 function randomize () {
+    var count = getInput("cell-counter").value;
+    if (neuron.length !== count) {
+        order();
+    }
     neurons = neurons.sort(() => Math.random() - 0.5);
 }
 function order () {
     neurons.length = 0;
-    for (var i = 0; i < COUNT; i += 1) {
+    var count = getInput("cell-counter").value;
+    for (var i = 0; i < count; i += 1) {
         neurons.push(i);
     }
 }
 function clear () {
-    document.querySelector("main").innerHTML = "";
+    events.emit("destroy");
 }
 function create () {
     for (var i = 0; i < neurons.length; i += 1) {
         new neuron(neurons[i]);
     }
 }
-
 
 module.exports = {
     init: create

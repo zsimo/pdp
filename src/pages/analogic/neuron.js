@@ -2,9 +2,6 @@
 
 var events = require("src/pages/analogic/events");
 
-function getInput (name) {
-    return document.querySelector('input[name="'+ name +'"]');
-}
 
 var DEFAULT_HEIGHT = 31;
 var DEFAULT_BACKGROUND = {
@@ -18,6 +15,9 @@ var ACTIVE_BACKGROUND = {
     blue: 77 
 };
 
+function getInput (name) {
+    return document.querySelector('input[name="'+ name +'"]');
+}
 function difference(a, b) {
     return Math.abs(a - b);
   }
@@ -47,7 +47,7 @@ module.exports = function (index) {
 
     var me = document.createElement("div");
 
-    events.on('number', function (number) {
+    var unbindNumber = events.on('number', function (number) {
 
         var factor = getInput("factor").value;
         var activation = calculateActivation(number, index, factor);
@@ -69,6 +69,17 @@ module.exports = function (index) {
 
         
     });
+
+    
+    var unbindDestroy = events.on('destroy', function (number) {
+
+        unbindNumber();
+        unbindDestroy();
+
+        document.querySelector("main").removeChild(me);
+        
+    });
+    
 
     me.className = "neuron";
     me.innerText = index;
