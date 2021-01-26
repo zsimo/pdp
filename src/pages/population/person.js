@@ -9,26 +9,48 @@ const LEFT = 0;
 const RIGHT = document.body.clientWidth;
 const HORIZONTAL = "horizontal";
 const VERTICAL = "vertical";
+var horizontal_step = 1;
+var vertical_step = 1;
 
-function next (current, direction) {
-
-    var newCoord = current + (helpers.getRandomBetween(1, 2) === 1 ? -1 : 1);
+function randomNext (current, direction) {
+    var newCord = current + (helpers.getRandomBetween(1, 2) === 1 ? -1 : 1);
     if (direction === HORIZONTAL) {
-        return Math.min(Math.max(newCoord, TOP), BOTTOM);
+        return Math.min(Math.max(newCord, TOP), BOTTOM);
     } else {
-        return Math.min(Math.max(newCoord, LEFT), RIGHT);
+        return Math.min(Math.max(newCord, LEFT), RIGHT);
     }
+}
+function linearNext (current, direction) {
+    if (direction === HORIZONTAL) {
+        if (current <= LEFT || current >= RIGHT) {
+            horizontal_step = - horizontal_step;
+        }
+        return current + horizontal_step;
+    } else {
+        if (current <= TOP || current >= BOTTOM) {
+            vertical_step = - vertical_step;
+        }
+        return current + vertical_step;
+    }
+
+}
+
+function randomMovement (me) {
+    me.style.top = randomNext(parseInt(me.style.top, 10), VERTICAL) + "px";
+    me.style.left = randomNext(parseInt(me.style.left, 10), HORIZONTAL) + "px";
+}
+function linear (me) {
+    me.style.top = linearNext(parseInt(me.style.top, 10), VERTICAL) + "px";
+    me.style.left = linearNext(parseInt(me.style.left, 10), HORIZONTAL) + "px";
 }
 
 
 module.exports = function (index) {
 
     var me = document.createElement("div");
-
     var unbindMove = events.on('move', function () {
 
-        me.style.top = next(parseInt(me.style.top, 10), VERTICAL) + "px";
-        me.style.left = next(parseInt(me.style.left, 10), HORIZONTAL) + "px";
+        linear(me);
 
     });
 
