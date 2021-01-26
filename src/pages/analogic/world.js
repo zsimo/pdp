@@ -1,6 +1,6 @@
 "use strict";
 
-var events = require("src/pages/analogic/events");
+var events = require("src/events");
 var neuron = require("src/pages/analogic/neuron");
 
 var count = getInput("cell-counter").value;

@@ -4,7 +4,8 @@ var main = document.querySelector("main");
 
 var pages = [
     "cell",
-    "analogic"
+    "analogic",
+    "population"
 ];
 
 var ul = document.createElement("ul");

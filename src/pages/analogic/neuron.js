@@ -1,6 +1,6 @@
 "use strict";
 
-var events = require("src/pages/analogic/events");
+var events = require("src/events");
 
 
 var DEFAULT_HEIGHT = 31;
