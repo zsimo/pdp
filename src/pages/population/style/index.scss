@@ -1,6 +1,26 @@
 @import "src/style/index";
 
 $food: #de6717;
+$sidebar: #101014;
+
+* {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  background: $sidebar;
+  color: $bg-color;
+  float: left;
+  padding: 5px;
+  width: 20%;
+}
+
+main {
+  border: 5px solid $primary;
+  float: right;
+  position: relative;
+  width: 80%;
+}
 
 .person {
   width: 20px;

@@ -4,9 +4,10 @@ var events = require("src/events");
 var helpers = require("src/helpers");
 
 const TOP = 0;
-const BOTTOM = document.body.clientHeight;
+const BOTTOM = document.querySelector("main").clientHeight;
 const LEFT = 0;
-const RIGHT = document.body.clientWidth;
+const RIGHT = document.querySelector("main").clientWidth;
+
 const HORIZONTAL = "horizontal";
 const VERTICAL = "vertical";
 var horizontal_step = 1;
@@ -75,8 +76,6 @@ var person = function (index) {
     // me.innerText = index;
     this.me.setAttribute("data-index", index);
     document.querySelector("main").appendChild(this.me);
-
-    console.log(this);
 
 };
 
