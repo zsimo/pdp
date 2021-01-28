@@ -1,9 +1,9 @@
 "use strict";
 
-const FREQUENCY = 10;
+const FREQUENCY = 100;
 var events = require("src/events");
 var person = require("src/pages/population/person");
-const COUNTER = 1;
+const COUNTER = 10;
 
 function create () {
     for (var i = 0; i < COUNTER; i += 1) {

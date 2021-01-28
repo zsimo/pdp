@@ -1,0 +1,2 @@
+(()=>{"use strict";var e,n;e=document.querySelector("main"),n=document.createElement("ul"),["cell","analogic","population"].forEach((function(e){var t=document.createElement("li"),a=document.createElement("a");a.href=window.location.href+e,a.innerText="page #"+e,t.appendChild(a),n.appendChild(t)})),e.appendChild(n)})();
+//# sourceMappingURL=index_e6b6814a5947afb18e10.js.map

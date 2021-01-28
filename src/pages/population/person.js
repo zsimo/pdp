@@ -39,37 +39,45 @@ function randomMovement (me) {
     me.style.top = randomNext(parseInt(me.style.top, 10), VERTICAL) + "px";
     me.style.left = randomNext(parseInt(me.style.left, 10), HORIZONTAL) + "px";
 }
-function linear (me) {
-    me.style.top = linearNext(parseInt(me.style.top, 10), VERTICAL) + "px";
-    me.style.left = linearNext(parseInt(me.style.left, 10), HORIZONTAL) + "px";
+function linear () {
+
+    this.me.style.top = linearNext(parseInt(this.me.style.top, 10), VERTICAL) + "px";
+    this.me.style.left = linearNext(parseInt(this.me.style.left, 10), HORIZONTAL) + "px";
+
+    if (this.life === 0) {
+        this.unbindMove();
+        this.me.className = "food";
+    } else {
+        this.life -= 1;
+    }
+
 }
 
+var person = function (index) {
 
-module.exports = function (index) {
-
-    var me = document.createElement("div");
-    var unbindMove = events.on('move', function () {
-
-        linear(me);
-
-    });
+    this.me = document.createElement("div");
+    this.life = helpers.getRandomBetween(10, 100);
+    this.unbindMove = events.on('move', linear.bind(this));
 
 
     var unbindDestroy = events.on('destroy', function (number) {
 
-        unbindMove();
+        this.unbindMove();
         unbindDestroy();
 
-        document.querySelector("main").removeChild(me);
+        document.querySelector("main").removeChild(this.me);
 
-    });
+    }.bind(this));
 
-
-    me.style.top = helpers.getRandomBetween(TOP, BOTTOM) + "px";
-    me.style.left = helpers.getRandomBetween(LEFT, RIGHT) + "px";
-    me.className = "person";
+    this.me.style.top = helpers.getRandomBetween(TOP, BOTTOM) + "px";
+    this.me.style.left = helpers.getRandomBetween(LEFT, RIGHT) + "px";
+    this.me.className = "person";
     // me.innerText = index;
-    me.setAttribute("data-index", index);
-    document.querySelector("main").appendChild(me);
+    this.me.setAttribute("data-index", index);
+    document.querySelector("main").appendChild(this.me);
+
+    console.log(this);
 
 };
+
+module.exports = person;

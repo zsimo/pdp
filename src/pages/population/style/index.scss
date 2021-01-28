@@ -1,9 +1,17 @@
 @import "src/style/index";
 
+$food: #de6717;
+
 .person {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background: $secondary;
+  position: absolute;
+}
+.food {
+  width: 10px;
+  height: 10px;
+  background: $food;
   position: absolute;
 }
