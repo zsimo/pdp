@@ -1,0 +1,2 @@
+(()=>{"use strict";var e,n;e=document.querySelector("main"),n=document.createElement("ul"),["cell","analogic","population","car"].forEach((function(e){var a=document.createElement("li"),t=document.createElement("a");t.href=window.location.href+e,t.innerText="page #"+e,a.appendChild(t),n.appendChild(a)})),e.appendChild(n)})();
+//# sourceMappingURL=index_6d4e8a852bde86a09190.js.map
