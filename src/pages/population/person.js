@@ -3,9 +3,9 @@
 var events = require("src/events");
 var helpers = require("src/helpers");
 
-const TOP = 0;
+const TOP = 300;
 const BOTTOM = document.querySelector("main").clientHeight;
-const LEFT = 0;
+const LEFT = 100;
 const RIGHT = document.querySelector("main").clientWidth;
 
 const HORIZONTAL = "horizontal";
@@ -47,7 +47,9 @@ function linear () {
 
     if (this.life === 0) {
         this.unbindMove();
+        this.unbindFood();
         this.me.className = "food";
+        events.emit("food", this.me.style.top, this.me.style.left);
     } else {
         this.life -= 1;
     }
@@ -63,10 +65,20 @@ var person = function (index) {
 
     var unbindDestroy = events.on('destroy', function (number) {
 
+        this.unbindFood();
         this.unbindMove();
         unbindDestroy();
 
         document.querySelector("main").removeChild(this.me);
+
+    }.bind(this));
+
+    this.unbindFood = events.on('food', function (top, left) {
+
+        if (top === this.me.style.top || left === this.me.style.left) {
+            console.log(this.me.getAttribute("data-index"), "mangiato", this.life)
+            this.life += 50;
+        }
 
     }.bind(this));
 

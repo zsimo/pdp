@@ -3,7 +3,7 @@
 const FREQUENCY = 100;
 var events = require("src/events");
 var person = require("src/pages/population/person");
-const COUNTER = 10;
+const COUNTER = 200;
 
 function create () {
     for (var i = 0; i < COUNTER; i += 1) {
