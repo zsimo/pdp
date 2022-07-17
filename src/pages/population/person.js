@@ -3,9 +3,9 @@
 var events = require("src/events");
 var helpers = require("src/helpers");
 
-const TOP = 300;
+const TOP = 20;
 const BOTTOM = document.querySelector("main").clientHeight;
-const LEFT = 100;
+const LEFT = 20;
 const RIGHT = document.querySelector("main").clientWidth;
 
 const HORIZONTAL = "horizontal";

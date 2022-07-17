@@ -1,0 +1,24 @@
+$sidebar: #101014;
+
+* {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  background: $sidebar;
+  color: $bg-color;
+  float: left;
+  padding: 5px;
+  width: 20%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  border: 5px solid $primary;
+  float: right;
+  position: relative;
+  width: 80%;
+  height: 100vh;
+  overflow: hidden;
+}
