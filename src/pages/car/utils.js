@@ -4,6 +4,15 @@ const utils = {
     lerp: function (A,B,t){
         return A+(B-A)*t;
     },
+    getNodeX: function (nodes,index,left,right) {
+        return utils.lerp(
+            left,
+            right,
+            nodes.length==1
+                ?0.5
+                :index/(nodes.length-1)
+        );
+    },
     getIntersection: function(A,B,C,D){
         const tTop=(D.x-C.x)*(A.y-C.y)-(D.y-C.y)*(A.x-C.x);
         const uTop=(C.y-A.y)*(A.x-B.x)-(C.x-A.x)*(A.y-B.y);
@@ -79,6 +88,13 @@ const utils = {
         for(let i=0;i<level.biases.length;i++){
             level.biases[i]=Math.random()*2-1;
         }
+    },
+    getRGBA: function(value){
+        const alpha=Math.abs(value);
+        const R=value<0?0:255;
+        const G=R;
+        const B=value>0?0:255;
+        return "rgba("+R+","+G+","+B+","+alpha+")";
     }
 };
 

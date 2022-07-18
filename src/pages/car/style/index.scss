@@ -4,10 +4,20 @@
 
 main {
   text-align: center;
+  display: flex;
+  gap: 20px;
 }
 
-canvas {
+canvas#car-canvas {
+  display: inline-block;
   background: $primary;
   height: 100vh;
   width: 200px;
+}
+
+canvas#network-canvas {
+  display: inline-block;
+  background: $sidebar;
+  height: 100vh;
+  width: 300px;
 }
