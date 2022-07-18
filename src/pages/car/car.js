@@ -1,5 +1,6 @@
 "use strict";
 
+const NeuralNetwork = require("src/pages/car/network.js");
 const Controls = require("src/pages/car/controls.js");
 const Sensor = require("src/pages/car/sensor.js");
 const utils = require("src/pages/car/utils.js");
@@ -18,9 +19,15 @@ class Car{
         this.angle=0;
         this.damaged = false;
 
+        this.useBrain=controlType=="AI";
+
         if (controlType !== "DUMMY") {
             this.sensor =  new Sensor(this);
+            this.brain=new NeuralNetwork(
+                [this.sensor.rayCount,6,4]
+            );
         }
+
 
         this.controls = new Controls(controlType);
     }
@@ -31,8 +38,21 @@ class Car{
             this.polygon=this.createPolygon();
             this.damaged=this.assessDamage(roadBorders, traffic);
         }
-        if (this.sensor) {
-            this.sensor.update(roadBorders, traffic);
+        if(this.sensor){
+            this.sensor.update(roadBorders,traffic);
+
+            const offsets=this.sensor.readings.map(
+                s=>s==null?0:1-s.offset
+            );
+            // console.log(this.brain.levels)
+            const outputs= utils.networkFeedForward(offsets,this.brain);
+
+            if(this.useBrain){
+                this.controls.forward=outputs[0];
+                this.controls.left=outputs[1];
+                this.controls.right=outputs[2];
+                this.controls.reverse=outputs[3];
+            }
         }
 
     }
