@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // const car = new Car(road.getLaneCenter(1),100,30,50,"KEYS");
     // const car = new Car(road.getLaneCenter(1),100,30,50,"AI");
 
-    const cars = generateCars(1);
+    const cars = generateCars(100);
     let bestCar=cars[0];
     if(localStorage.getItem("bestBrain")){
         for(let i=0;i<cars.length;i++){
