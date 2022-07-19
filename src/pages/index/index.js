@@ -6,7 +6,8 @@ var pages = [
     "cell",
     "analogic",
     "population",
-    "car"
+    "car",
+    "recognizer"
 ];
 
 var ul = document.createElement("ul");
