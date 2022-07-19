@@ -5,8 +5,14 @@ const INTERVAL = 42;
 const THRESHOLD = 90;
 var canvas;
 var OBJECT_PROP;
+var OBSERVATIONS = [];
+var OBS_COUNT = 0;
+const DIMENSION = 2;
 
 document.addEventListener('DOMContentLoaded', function () {
+
+        document.querySelector("button").addEventListener("click", learn);
+        document.querySelector("#objectName").addEventListener("keypress", checkKeyPress);
 
         canvas = document.querySelector("canvas");
         canvas.width = SIZE;
@@ -28,6 +34,25 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(canvas)
 });
 
+
+function learn () {
+        const name = document.getElementById("objectName").value;
+        if (!name) {
+                alert("enter a name");
+                return;
+        }
+        OBS_COUNT ++;
+        OBSERVATIONS[OBS_COUNT] = {
+                name : name,
+                prop: OBJECT_PROP
+        };
+        document.getElementById("objectName").value = "";
+}
+function checkKeyPress (event) {
+        if (event.key === "Enter") {
+                learn();
+        }
+}
 
 function updateImage(video) {
         const context = canvas.getContext("2d");
@@ -58,17 +83,68 @@ function getPixelMatrix (dataArray) {
 
 }
 
+function countBlackPixels (matrix) {
+        var count = 0;
+        for (var i = 1; i <= SIZE; i ++ ) {
+                for (var j = 1; j <= SIZE; j ++ ) {
+                        if (matrix[i][j] == 0) {
+                                count ++;
+                        }
+                }
+        }
+        return count;
+}
+
+
 function processMatrix (matrix) {
         isolateObject(matrix);
         const box = getBoundingBox(matrix);
         const boxProp = getBoxProperty(box);
-        OBJECT_PROP = boxProp.aspectRatio;
-        document.getElementById("output").innerHTML = "Aspect ratio: " + OBJECT_PROP.toFixed(2);
+        const blackPixels = countBlackPixels(matrix);
+        const boxArea = boxProp.width * boxProp.length;
+        const fullness = blackPixels / boxArea;
+
+        OBJECT_PROP = [];
+        OBJECT_PROP[1] = boxProp.aspectRatio;
+        OBJECT_PROP[2] = fullness;
+
+        recognize(OBJECT_PROP);
 
         updateCanvas(matrix);
         drawBox(box);
 
+}
 
+function recognize (currentObject) {
+        var name;
+        if (OBS_COUNT === 0) {
+                name = "?";
+        } else {
+                var neighbor = getNearestNeighbor(currentObject);
+                name = neighbor.name;
+        }
+        document.getElementById("output").innerHTML = name;
+}
+
+function distance (p1, p2) {
+        var distance = 0;
+        for (var i = 1; i <= DIMENSION; i ++) {
+                distance += (p1[i] - p2[i]) * (p1[i] - p2[i]);
+        }
+        return Math.sqrt(distance);
+}
+function getNearestNeighbor (currentObject) {
+        var neighbor;
+        var minDist;
+        for (var i = 1; i <= OBS_COUNT; i++ ) {
+                var dist = distance(currentObject, OBSERVATIONS[i].prop);
+                if (!minDist || minDist > dist) {
+                        minDist = dist;
+                        neighbor = OBSERVATIONS[i];
+                }
+        }
+
+        return neighbor;
 }
 
 function getBoxProperty (box) {
