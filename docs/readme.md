@@ -8,3 +8,4 @@ https://unina.academia.edu/GiuseppeTrautteur
 
 
 giuseppe.trautteur2@unina.it
+informazioni su macchina "Educanda", simulazione via js?
