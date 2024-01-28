@@ -43,20 +43,20 @@ module.exports = function (env) {
         } else {
             filename = path.resolve(paths.public, page, "index.html");
         }
-        
+
         return new HtmlWebpackPlugin({
             template: path.resolve(paths.src, "pages", page, "html.ejs"),
             chunks: [page],
             filename: filename
         });
-    
+
     });
 
     var optimization = {};
     if (IS_PROD) {
         optimization.minimize = true;
     }
-    
+
     return {
         mode: MODE,
         entry: entry,
@@ -67,13 +67,13 @@ module.exports = function (env) {
         devtool: "source-map",
         optimization: optimization,
         devServer: {
-            contentBase: paths.public,
-            compress: true,
+            // contentBase: paths.public,
+            // compress: true,
             port: 9000
         },
 
         module: {
-            
+
             rules: [
                 {
                     test: /\.html$/i,
@@ -90,7 +90,7 @@ module.exports = function (env) {
                     ]
                   },
             ]
-        
+
         },
 
 
