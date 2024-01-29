@@ -9,6 +9,9 @@ https://plato.stanford.edu/entries/connectionism/
 https://towardsdatascience.com/life-and-natures-influence-on-ai-237647e85823
 
 
+some more links [here](links.md)
+
+
 [style inspiration](https://lawsofux.com/)
 
 [demo](https://zsimo.github.io/pdp/public)

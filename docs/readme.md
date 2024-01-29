@@ -7,7 +7,8 @@ http://www.fedoa.unina.it/view/subjects/INF=5F01.type.html
 https://unina.academia.edu/GiuseppeTrautteur
 
 
-giuseppe.trautteur2@unina.it
+
+g.trautteur2@gmail.com
 informazioni su macchina "Educanda", simulazione via js?
 
 
