@@ -16,3 +16,5 @@ informazioni su macchina "Educanda", simulazione via js?
 Fabio Stefanini
 https://www.youtube.com/watch?v=42nrzpTZFYI&list=PL9LxIy4nzJMIP_cxPtF0sCIE4U7zvMUN-&index=6
 https://scholar.google.com/citations?user=PEQDjGsAAAAJ&hl=en
+
+

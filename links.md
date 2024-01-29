@@ -1,1 +1,2 @@
+- [Intelligenza e coscienza - Giuseppe Trautteur e Giorgio Vallortigara](https://www.youtube.com/watch?v=YiL82mXWGw0) email at 13.38
 - [Human Connectome Project](https://www.humanconnectome.org/) from [L'attività cerebrale spontanea - Maurizio Corbetta](https://www.youtube.com/watch?v=RF3a8ul-Lmk)
