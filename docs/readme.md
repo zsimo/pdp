@@ -18,3 +18,8 @@ https://www.youtube.com/watch?v=42nrzpTZFYI&list=PL9LxIy4nzJMIP_cxPtF0sCIE4U7zvM
 https://scholar.google.com/citations?user=PEQDjGsAAAAJ&hl=en
 
 
+
+
+Andrej Karpathy
+https://www.youtube.com/@AndrejKarpathy
+scoperto grazie a Salvatore Sanfilippo [here](https://www.youtube.com/watch?v=EXbgUXt8fFU), intorno al minuto 1
