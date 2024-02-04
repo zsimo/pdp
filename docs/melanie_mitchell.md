@@ -1,2 +1,3 @@
 - [https://melaniemitchell.me/](https://melaniemitchell.me/)
 - [Introduction to Complexity (2020)](https://www.complexityexplorer.org/courses/104-introduction-to-complexity-2020/segments/9721?summary)
+- [L'intelligenza artificiale. Una guida per esseri umani pensanti (libro)](https://www.amazon.it/Lintelligenza-artificiale-Melanie-Mitchell/dp/8806253301/ref=asc_df_8806253301/)
