@@ -4,7 +4,7 @@
 [sito personale](https://www.cs.toronto.edu/~hinton/) con Coursera video
 
 
-## todo `1d - A simple example of learning`
+## todo `1e - Three types of learning`
 
 
 
