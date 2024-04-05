@@ -23,3 +23,6 @@ https://scholar.google.com/citations?user=PEQDjGsAAAAJ&hl=en
 Andrej Karpathy
 https://www.youtube.com/@AndrejKarpathy
 scoperto grazie a Salvatore Sanfilippo [here](https://www.youtube.com/watch?v=EXbgUXt8fFU), intorno al minuto 1
+
+Cibernetica
+https://www.treccani.it/enciclopedia/la-cibernetica_(Il-Contributo-italiano-alla-storia-del-Pensiero:-Scienze)/
