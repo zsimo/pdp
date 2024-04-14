@@ -26,3 +26,7 @@ scoperto grazie a Salvatore Sanfilippo [here](https://www.youtube.com/watch?v=EX
 
 Cibernetica
 https://www.treccani.it/enciclopedia/la-cibernetica_(Il-Contributo-italiano-alla-storia-del-Pensiero:-Scienze)/
+
+
+
+McCulloch e Walter Pitts formalizzazione neurone artificiale [here](https://www.iltascabile.com/scienze/origini-intelligenza-artificiale/)
