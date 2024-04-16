@@ -12,7 +12,7 @@ module.exports = function (index, alive) {
     if (alive) {
         me.classList.add("alive");
     }
-    me.innerText = index + 1;
+    me.innerText = index;
     me.setAttribute("data-index", index);
     document.querySelector("main").appendChild(me);
 
