@@ -5,7 +5,7 @@ var cell = require("src/pages/life/cell");
 
 var INSTANT = 1000;
 var ALIVE_CELLS = [34, 45, 54, 56, 57];
-var count = 100;
+var count = 1000;
 // var cells = [];
 // for (var i = 0; i < count; i += 1) {
 //     cells.push(i);
@@ -13,9 +13,18 @@ var count = 100;
 
 
 function create () {
-    for (var i = 1; i <= count; i += 1) {
-        new cell(i, ALIVE_CELLS.indexOf(i) !== -1);
+    const table = document.querySelector("table");
+    const header = document.querySelector("header");
+    const padding = 10;
+    let tableBottom = table.offsetHeight + header.getBoundingClientRect().height + padding;
+    let counter = 1;
+    while (tableBottom <= window.innerHeight) {
+        new cell(counter, ALIVE_CELLS.indexOf(counter) !== -1);
+        counter += 1;
+        tableBottom = table.offsetHeight + header.getBoundingClientRect().height + padding;
     }
+    const rows = table.tBodies[0].rows;
+    table.tBodies[0].removeChild(rows[rows.length - 1]);
 }
 
 module.exports = {
@@ -25,6 +34,7 @@ module.exports = {
 
 
 setInterval(function () {
+    return;
     var main = document.querySelector("main");
     var cells = main.querySelectorAll(".cell");
     var cell = cells[54];
