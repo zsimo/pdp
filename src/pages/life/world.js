@@ -3,9 +3,9 @@
 var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
-var INSTANT = 1000;
-var ALIVE_CELLS = [34, 45, 54, 56, 57];
-var count = 1000;
+const ALIVE = "alive";
+var INSTANT = 100;
+var ALIVE_CELLS = [];
 // var cells = [];
 // for (var i = 0; i < count; i += 1) {
 //     cells.push(i);
@@ -25,6 +25,11 @@ function create () {
     }
     const rows = table.tBodies[0].rows;
     table.tBodies[0].removeChild(rows[rows.length - 1]);
+
+    table.addEventListener("click", function (e) {
+        const target = e.target;
+        target.classList.toggle(ALIVE);
+    });
 }
 
 module.exports = {
@@ -33,32 +38,53 @@ module.exports = {
 
 
 
-setInterval(function () {
-    return;
-    var main = document.querySelector("main");
-    var cells = main.querySelectorAll(".cell");
-    var cell = cells[54];
-    var index = parseInt(cell.getAttribute("data-index"), 10);
-    // 44, 45, 46
-    // 54,   , 56
-    // 64, 65, 66
-    var neighbors = [];
-    if (index - 11) {
-        neighbors.push(index - 11);
-    }
-    if (index - 10) {
-        neighbors.push(index - 10);
-    }
-    if (index - 9) {
-        neighbors.push(index - 9);
-    }
-    console.log(cell, index);
-}, INSTANT);
-// document.body.addEventListener("click", function (event) {
-//     var target = event.target;
-//     if (target.classList.contains("neuron")) {
-//         var number = parseInt(target.getAttribute("data-index"), 10);
-//         events.emit("number", number);
-//         getInput("number").value = number;
-//     }
-// });
+const start = document.querySelector("button");
+start.addEventListener("click", function () {
+    setInterval(function () {
+
+        const main = document.querySelector("main");
+        const cells = main.querySelectorAll(".cell");
+        for (const cell of cells) {
+            let activeCount = 0;
+            const neighbors = [];
+            const rowAbove = cell.parentElement.previousSibling;
+            const rowBelow = cell.parentElement.nextSibling;
+            if (rowAbove) {
+                // topLeft
+                neighbors.push(rowAbove.cells[cell.cellIndex - 1]);
+                // top
+                neighbors.push(rowAbove.cells[cell.cellIndex]);
+                // topRight
+                neighbors.push(rowAbove.cells[cell.cellIndex + 1]);
+            }
+
+            // left
+            neighbors.push(cell.previousSibling);
+            // right
+            neighbors.push(cell.nextSibling);
+            if (rowBelow) {
+                // belowLeft
+                neighbors.push(rowBelow.cells[cell.cellIndex - 1]);
+                // below
+                neighbors.push(rowBelow.cells[cell.cellIndex]);
+                // belowRight
+                neighbors.push(rowBelow.cells[cell.cellIndex + 1]);
+            }
+
+
+            for (const neighbor of neighbors) {
+                if (neighbor && neighbor.classList.contains(ALIVE)) {
+                    activeCount += 1;
+                }
+            }
+            if (activeCount === 2 || activeCount === 3) {
+                cell.classList.add("alive");
+            } else {
+                cell.classList.remove("alive");
+            }
+
+        }
+
+    }, INSTANT);
+})
+
