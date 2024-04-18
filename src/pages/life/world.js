@@ -113,12 +113,10 @@ function _iterate () {
 }
 
 
-
 const start = document.querySelector("button");
 start.addEventListener("click", function () {
-    requestAnimationFrame(function () {
-        requestAnimationFrame(_iterate);
-    });
-    //setInterval(_iterate, INSTANT);
+
+
+    setInterval(_iterate, INSTANT);
 })
 
