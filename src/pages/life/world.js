@@ -4,7 +4,7 @@ var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
 const ALIVE = "alive";
-var INSTANT = 100;
+var INSTANT = 1000;
 var ALIVE_CELLS = [];
 // var cells = [];
 // for (var i = 0; i < count; i += 1) {
@@ -42,8 +42,15 @@ const start = document.querySelector("button");
 start.addEventListener("click", function () {
     setInterval(function () {
 
+        let start = Date.now();
         const main = document.querySelector("main");
         const cells = main.querySelectorAll(".cell");
+        const newTable = document.createElement("table");
+        const newTbody = newTable.createTBody();
+        //const fragment = new DocumentFragment();
+        //const newTbody = document.createElement("tbody");
+        //fragment.appendChild(newTbody);
+        let tr;
         for (const cell of cells) {
             let activeCount = 0;
             const neighbors = [];
@@ -77,13 +84,33 @@ start.addEventListener("click", function () {
                     activeCount += 1;
                 }
             }
+            const newCell = cell.cloneNode(true);
             if (activeCount === 2 || activeCount === 3) {
-                cell.classList.add("alive");
+                newCell.classList.add("alive");
             } else {
-                cell.classList.remove("alive");
+
+                newCell.classList.remove("alive");
             }
+            //console.log(cell.parentElement.rowIndex);
+            // const tr = tbody.insertRow(-1);
+            if (!newTbody.rows[cell.parentElement.rowIndex]) {
+                //tr = document.createElement("tr");
+                tr = newTbody.insertRow(-1);
+                // newTbody.appendChild(tr);
+            }
+            tr.appendChild(newCell);
 
         }
+
+        // //table.replaceChild(table.tBodies[0], newTbody)
+        // table.tBodies[0] = newTbody;
+
+
+        //main.replaceChild(main.querySelector("table"), newTable);
+
+        main.replaceChildren(newTable);
+
+        console.log(Date.now()-start);
 
     }, INSTANT);
 })
