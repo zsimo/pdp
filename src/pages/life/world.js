@@ -4,8 +4,15 @@ var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
 const ALIVE = "alive";
-var INSTANT = 1000;
-var ALIVE_CELLS = [];
+var INSTANT = 100;
+var ALIVE_CELLS = [
+    1, 23, 4, 56, 6, 7, 8, 9, 10,
+    20, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    30, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    40, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+    60, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
+];
 // var cells = [];
 // for (var i = 0; i < count; i += 1) {
 //     cells.push(i);
@@ -83,11 +90,10 @@ function _iterate () {
             }
         }
         const newCell = cell.cloneNode(true);
-        if (activeCount === 2 || activeCount === 3) {
-            newCell.classList.add("alive");
-        } else {
-
+        if (activeCount < 2 || activeCount > 3) {
             newCell.classList.remove("alive");
+        } else if (activeCount === 3) {
+            newCell.classList.add("alive");
         }
         //console.log(cell.parentElement.rowIndex);
         // const tr = tbody.insertRow(-1);

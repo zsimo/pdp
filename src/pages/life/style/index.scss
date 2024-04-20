@@ -7,6 +7,16 @@ main {
   //max-width: 500px;
   //flex-wrap: wrap;
   padding: 10px;
+  background: lightgray;
+}
+
+table {
+  background: $bg-color;
+}
+
+button {
+  padding: 6px 14px;
+  border: 1px solid $bg-color;
 }
 
 .cell {
