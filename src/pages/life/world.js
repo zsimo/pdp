@@ -4,7 +4,7 @@ var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
 const ALIVE = "alive";
-var INSTANT = 100;
+var INSTANT = 500;
 var ALIVE_CELLS = [
     // 1, 23, 4, 56, 6, 7, 8, 9, 10,
     // 20, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
@@ -102,6 +102,10 @@ function _iterate () {
             tr = newTbody.insertRow(-1);
             // newTbody.appendChild(tr);
         }
+        if (activeCount) {
+            newCell.innerText = activeCount;
+        }
+
         tr.appendChild(newCell);
 
     }
@@ -116,13 +120,17 @@ function _iterate () {
 
     console.log(Date.now()-start);
 
+    if (document.querySelectorAll(".cell.alive").length === 0) {
+        clearInterval(intervalId);
+    }
+
 }
 
-
+var intervalId;
 const start = document.querySelector("button");
 start.addEventListener("click", function () {
 
 
-    setInterval(_iterate, INSTANT);
+    intervalId = setInterval(_iterate, INSTANT);
 })
 
