@@ -4,8 +4,10 @@ var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
 const ALIVE = "alive";
-var INSTANT = 500;
+var INSTANT = 100;
 var ALIVE_CELLS = [
+    // 1358, 1428, 1498, 1429, 1360
+
     // 1, 23, 4, 56, 6, 7, 8, 9, 10,
     // 20, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
     // 30, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
@@ -103,7 +105,7 @@ function _iterate () {
             // newTbody.appendChild(tr);
         }
         if (activeCount) {
-            newCell.innerText = activeCount;
+            //newCell.innerText = activeCount;
         }
 
         tr.appendChild(newCell);
