@@ -1,0 +1,1 @@
+{"version":3,"file":"petri_998fdecfbd00e3d47ce7.js","mappings":"mBAEAA,QAAQC,IAAI,K","sources":["webpack:///./src/pages/petri/index.js"],"sourcesContent":["\"use strict\";\n\nconsole.log(\"ok\")\n"],"names":["console","log"],"sourceRoot":""}
