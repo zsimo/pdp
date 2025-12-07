@@ -14,7 +14,8 @@ table {
   background: $bg-color;
 }
 
-button {
+button,
+select {
   padding: 6px 14px;
   border: 1px solid $bg-color;
 }

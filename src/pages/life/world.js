@@ -3,9 +3,12 @@
 var events = require("src/events");
 var cell = require("src/pages/life/cell");
 
+let generation = 0;
+const main = document.querySelector("main");
+const generationLabel = document.querySelector("#generation");
 const ALIVE = "alive";
-var INSTANT = 100;
-var ALIVE_CELLS = [
+const INSTANT = 100;
+const ALIVE_CELLS = [
     // 1358, 1428, 1498, 1429, 1360
 
     // 1, 23, 4, 56, 6, 7, 8, 9, 10,
@@ -15,6 +18,20 @@ var ALIVE_CELLS = [
     // 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
     // 60, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60
 ];
+const PATTERNS = {
+    blinker: [
+        [5, 5],
+        [5, 6],
+        [5, 7],
+    ],
+    glider: [
+        [5, 5],
+        [6, 6],
+        [7, 6],
+        [7, 5],
+        [7, 4],
+    ]
+};
 // var cells = [];
 // for (var i = 0; i < count; i += 1) {
 //     cells.push(i);
@@ -35,9 +52,11 @@ function create () {
     const rows = table.tBodies[0].rows;
     table.tBodies[0].removeChild(rows[rows.length - 1]);
 
-    table.addEventListener("click", function (e) {
+    main.addEventListener("click", function (e) {
         const target = e.target;
-        target.classList.toggle(ALIVE);
+        if (target.tagName === "TD") {
+            target.classList.toggle(ALIVE);
+        }
     });
 }
 
@@ -49,7 +68,6 @@ module.exports = {
 function _iterate () {
 
     let start = Date.now();
-    const main = document.querySelector("main");
     const cells = main.querySelectorAll(".cell");
 
     // const fragment = new DocumentFragment();
@@ -122,6 +140,10 @@ function _iterate () {
 
     console.log(Date.now()-start);
 
+    generation ++;
+
+    generationLabel.innerText = "Generation: " + generation;
+
     if (document.querySelectorAll(".cell.alive").length === 0) {
         clearInterval(intervalId);
     }
@@ -129,10 +151,37 @@ function _iterate () {
 }
 
 var intervalId;
-const start = document.querySelector("button");
+const start = document.querySelector("button#start");
 start.addEventListener("click", function () {
-
-
     intervalId = setInterval(_iterate, INSTANT);
-})
-
+});
+const stop = document.querySelector("button#stop");
+stop.addEventListener("click", function () {
+    clearInterval(intervalId);
+});
+const clear = document.querySelector("button#clear");
+function _clear () {
+    clearInterval(intervalId);
+    generation = 0;
+    generationLabel.innerText = "";
+    const liveCells = document.querySelectorAll(".cell.alive");
+    for (const cell of liveCells) {
+        cell.classList.remove("alive");
+    }
+}
+clear.addEventListener("click", _clear);
+const patterns = document.querySelector("select");
+patterns.addEventListener("change", function (event) {
+    const patterName = this.value;
+    _clear();
+    _setPattern(patterName);
+    console.log(patterName);
+});
+function _setPattern (patterName) {
+    const table = document.querySelector("table");
+    if (PATTERNS[patterName]) {
+        for (const coordinate of PATTERNS[patterName]) {
+            table.rows[coordinate[0]].cells[coordinate[1]].classList.add("alive");
+        }
+    }
+}
