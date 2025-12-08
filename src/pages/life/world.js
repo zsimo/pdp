@@ -8,6 +8,8 @@ const main = document.querySelector("main");
 const generationLabel = document.querySelector("#generation");
 const ALIVE = "alive";
 const INSTANT = 100;
+const X = 0;
+const Y = 1;
 const ALIVE_CELLS = [
     // 1358, 1428, 1498, 1429, 1360
 
@@ -30,6 +32,25 @@ const PATTERNS = {
         [7, 6],
         [7, 5],
         [7, 4],
+    ],
+    pentadecathlon: [
+        [15, 5],
+        [15, 6],
+        [15, 7],
+        [16, 7],
+        [17, 6],
+
+        [11, 9],
+        [10, 9],
+        [9, 9],
+        [11, 10],
+        [10, 11],
+
+        [16, 11],
+        [17, 11],
+        [17, 12],
+        [18, 12],
+        [16, 13],
     ]
 };
 // var cells = [];
@@ -181,7 +202,7 @@ function _setPattern (patterName) {
     const table = document.querySelector("table");
     if (PATTERNS[patterName]) {
         for (const coordinate of PATTERNS[patterName]) {
-            table.rows[coordinate[0]].cells[coordinate[1]].classList.add("alive");
+            table.rows[coordinate[Y]].cells[coordinate[X]].classList.add("alive");
         }
     }
 }
